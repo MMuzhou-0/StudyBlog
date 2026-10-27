@@ -3,36 +3,5 @@
     "subTitle":"Blog description",
     "avatarUrl":"https://raw.githubusercontent.com/MMuzhou-0/StudyBlog/refs/heads/main/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20261027100816_14_242.jpg",
     "GMEEK_VERSION":"last",
-    "style":"<style>
-    /* 页面背景渐变 */
-    body {
-        background: linear-gradient(135deg, #f0f7ff, #ffffff);
-        font-family: 'Microsoft YaHei', sans-serif;
-    }
-    /* 头部标题区域居中+美化 */
-    header {
-        margin-top:40px;
-        text-align:center;
-    }
-    header h1 {
-        color:#222;
-        font-weight:600;
-    }
-    /* 头像圆形、加阴影 */
-    .avatar {
-        border-radius:50% !important;
-        box-shadow: 0 4px 12px #00000022;
-    }
-    /* 文章卡片美化 */
-    .post-item {
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        border:none;
-        background:#fff;
-    }
-    /* 页脚文字颜色 */
-    footer {
-        color:#666;
-    }
-    </style>"
+    "style":"<style>body{background: linear-gradient(135deg, #f0f7ff, #ffffff);font-family: 'Microsoft YaHei', sans-serif;}header{margin-top:40px;text-align:center;}header h1{color:#222;font-weight:600;}.avatar{border-radius:50% !important;box-shadow: 0 4px 12px #00000022;}.post-item{border-radius: 10px;box-shadow: 0 2px 8px rgba(0,0,0,0.08);border:none;background:#fff;}footer{color:#666;}</style>"
 }
