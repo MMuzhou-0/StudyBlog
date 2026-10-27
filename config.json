@@ -3,5 +3,5 @@
     "subTitle":"Blog description",
     "avatarUrl":"https://raw.githubusercontent.com/MMuzhou-0/StudyBlog/refs/heads/main/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20261027100816_14_242.jpg",
     "GMEEK_VERSION":"last",
-    "style":"<style>body{background: linear-gradient(135deg, #f0f7ff, #ffffff);font-family: 'Microsoft YaHei', sans-serif;}header{margin-top:40px;text-align:center;}header h1{color:#222;font-weight:600;}.avatar{border-radius:50% !important;box-shadow: 0 4px 12px #00000022;}.post-item{border-radius: 10px;box-shadow: 0 2px 8px rgba(0,0,0,0.08);border:none;background:#fff;}footer{color:#666;}</style>"
+    "style":"<style>body{background: linear-gradient(135deg, #f0f7ff, #ffffff) !important;font-family: 'Microsoft YaHei', sans-serif !important;}header{margin-top:40px !important;text-align:center !important;}header img{border-radius:50% !important;box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;}header h1{color:#222 !important;font-weight:600 !important;}.Box-row{border-radius: 10px !important;box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;border:none !important;background:#fff !important;margin:8px 0 !important;}footer{color:#666 !important;}</style>"
 }
