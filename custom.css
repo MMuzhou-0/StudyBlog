@@ -1,68 +1,230 @@
-/* ========== 自定义美化代码 ========== */
+/* ============================================================
+   MMuzhou Blog 全站美化样式
+   ------------------------------------------------------------
+   重要说明：Gmeek 不会自动加载仓库根目录的 custom.css！
+   生效通道只有 config.json 的三个字段：
+     - allHead    → 全站页面（首页/文章页/标签页）统一生效
+     - style      → 仅文章页
+     - indexStyle → 仅首页/列表页
 
-/* 1. 设置全局字体和渐变背景 */
-body {
-    font-family: 'Inter', 'Noto Sans SC', sans-serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    min-height: 100vh;
+   本文件内容已同步到 config.json 的 "allHead" 字段中。
+   后续改样式：编辑本文件 → 把 <style> 里的内容复制进
+   config.json 的 "allHead" → 保存并推送 → Actions 手动全局生成。
+   ============================================================ */
+
+/* 1. 全局基础 */
+body{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif !important;
+  background: linear-gradient(165deg, #eef0ff 0%, #e5e8fb 35%, #faf9ff 70%, #eef0ff 100%) !important;
+  background-attachment: fixed !important;
+  min-height: 100vh !important;
+  max-width: 980px !important;
+  padding: 30px 40px !important;
+  color: #1f2430 !important;
+  transition: background .3s ease;
+}
+html[data-color-mode='dark'] body{
+  background: linear-gradient(165deg, #0d0f1f 0%, #141731 40%, #101226 100%) !important;
+  color: #d8dbea !important;
+}
+@media (max-width: 600px){
+  body{ padding: 14px !important; }
+}
+::selection{ background: rgba(108,92,231,.28); }
+::-webkit-scrollbar{ width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb{ background: rgba(108,92,231,.4); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover{ background: rgba(108,92,231,.6); }
+::-webkit-scrollbar-track{ background: transparent; }
+
+/* 2. 链接 */
+body a{ color: #6c5ce7 !important; text-decoration: none; transition: color .2s ease; }
+body a:hover{ color: #4f40c9 !important; text-decoration: underline; }
+html[data-color-mode='dark'] body a{ color: #a29bfe !important; }
+html[data-color-mode='dark'] body a:hover{ color: #c8c0ff !important; }
+
+/* 3. 头部毛玻璃卡片 */
+#header{
+  margin-top: 36px !important;
+  padding: 22px 28px !important;
+  background: rgba(255,255,255,.75) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,.7) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 10px 34px rgba(108,92,231,.1) !important;
+}
+html[data-color-mode='dark'] #header{
+  background: rgba(24,27,56,.72) !important;
+  border-color: rgba(120,120,210,.16) !important;
+  box-shadow: 0 10px 34px rgba(0,0,0,.4) !important;
 }
 
-/* 2. 头部区域（Header）毛玻璃效果 */
-header {
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    margin-top: 30px;
-    padding: 20px 30px !important;
+/* 4. 头像 */
+#header img.avatar{
+  border: 3px solid #fff !important;
+  outline: 2px solid #6c5ce7;
+  box-shadow: 0 0 0 5px rgba(108,92,231,.22), 0 8px 20px rgba(108,92,231,.28) !important;
+  transition: transform .45s ease, box-shadow .45s ease !important;
+}
+#header img.avatar:hover{
+  transform: rotate(360deg) scale(1.06);
+  box-shadow: 0 0 0 7px rgba(108,92,231,.32), 0 10px 26px rgba(108,92,231,.36) !important;
 }
 
-/* 3. 头像添加渐变边框和悬浮动画 */
-header img.avatar {
-    border: 3px solid #6c5ce7;
-    box-shadow: 0 0 15px rgba(108, 92, 231, 0.3);
-    transition: transform 0.3s ease;
+/* 5. 博客标题渐变流光 */
+#header .blogTitle{
+  font-size: 38px !important;
+  font-weight: 800 !important;
+  font-family: inherit !important;
+  background: linear-gradient(120deg, #6c5ce7, #a29bfe, #6c5ce7);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titleFlow 6s linear infinite;
 }
-header img.avatar:hover {
-    transform: scale(1.1) rotate(10deg);
+@keyframes titleFlow{ to{ background-position: 200% center; } }
+
+/* 6. 列表卡片化 */
+.SideNav.border{ border: none !important; }
+.SideNav-item{
+  background: rgba(255,255,255,.72) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,.6) !important;
+  border-radius: 14px !important;
+  padding: 16px 20px !important;
+  margin-bottom: 14px !important;
+  box-shadow: 0 4px 16px rgba(108,92,231,.07) !important;
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease !important;
+}
+.SideNav-item:hover{
+  transform: translateY(-3px);
+  background: rgba(255,255,255,.95) !important;
+  box-shadow: 0 10px 26px rgba(108,92,231,.16) !important;
+}
+html[data-color-mode='dark'] .SideNav-item{
+  background: rgba(26,29,58,.7) !important;
+  border-color: rgba(120,120,210,.14) !important;
+}
+html[data-color-mode='dark'] .SideNav-item:hover{
+  background: rgba(34,38,74,.85) !important;
+  box-shadow: 0 10px 26px rgba(0,0,0,.45) !important;
+}
+.listTitle{ font-size: 15px; font-weight: 600; }
+.SideNav-icon{ color: #6c5ce7; }
+html[data-color-mode='dark'] .SideNav-icon{ color: #a29bfe; }
+
+/* 7. 标签胶囊 */
+.Label{
+  border-radius: 999px !important;
+  padding: 3px 12px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1.6 !important;
 }
 
-/* 4. 文章列表卡片化 (针对 Gmeek 生成的文章项结构) */
-.post-item, .SideNav-item {
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 14px;
-    padding: 20px 24px;
-    margin-bottom: 16px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+/* 8. 分页 */
+.paginate-container{ margin-top: 28px !important; }
+.pagination .previous_page, .pagination .next_page{
+  border-radius: 10px !important;
+  padding: 6px 16px !important;
 }
 
-.post-item:hover, .SideNav-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(108, 92, 231, 0.15);
-    background: rgba(255, 255, 255, 0.95);
-}
+/* 9. 页脚 */
+#footer{ margin-top: 72px !important; padding-top: 24px; border-top: 1px solid rgba(108,92,231,.12); }
+#footer1, #footer2, #footer a{ color: #6b7280 !important; }
+html[data-color-mode='dark'] #footer1, html[data-color-mode='dark'] #footer2{ color: #8b8fa8 !important; }
 
-/* 5. 标签美化 */
-.Tag {
-    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-    color: #fff;
-    border-radius: 20px;
-    padding: 4px 12px;
-    font-size: 0.8rem;
-    border: none;
+/* 10. 标签页元素 */
+span.tagTitle{
+  background: linear-gradient(120deg, #6c5ce7, #a29bfe);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+.title-right .subnav-search{
+  border-radius: 12px !important;
+  overflow: hidden;
+  border: 1px solid rgba(108,92,231,.2);
+}
+.subnav-search .subnav-search-input{
+  border: none !important;
+  border-radius: 0 !important;
+  background: rgba(255,255,255,.8) !important;
+}
+html[data-color-mode='dark'] .subnav-search .subnav-search-input{
+  background: rgba(26,29,58,.7) !important;
+  color: #d8dbea !important;
+}
+#taglabel .Label{ margin-bottom: 6px !important; }
+.Counter{ border-radius: 999px !important; }
 
-/* 6. 搜索框美化 */
-.search-input, input[type="search"] {
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    padding: 12px 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    outline: none;
+/* 11. 文章正文排版 */
+.markdown-body{
+  font-size: 16px !important;
+  line-height: 1.85 !important;
+}
+.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4{
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  margin-top: 1.6em !important;
+  margin-bottom: .6em !important;
+}
+.markdown-body h1{ font-size: 1.7em !important; }
+.markdown-body h2{ font-size: 1.45em !important; border-bottom: 1px solid rgba(108,92,231,.15) !important; padding-bottom: .3em !important; }
+.markdown-body h3{ font-size: 1.25em !important; }
+.markdown-body p{ margin: .8em 0 !important; }
+.markdown-body a{ color: #6c5ce7 !important; text-decoration: underline !important; text-underline-offset: 3px; }
+.markdown-body code{
+  background: rgba(108,92,231,.1) !important;
+  color: #5b4bc4 !important;
+  border-radius: 6px !important;
+  padding: 2px 6px !important;
+  font-size: .9em !important;
+}
+html[data-color-mode='dark'] .markdown-body code{
+  background: rgba(162,155,254,.14) !important;
+  color: #b9b1ff !important;
+}
+.markdown-body pre{
+  background: #1e2130 !important;
+  color: #e6e6f0 !important;
+  border-radius: 12px !important;
+  padding: 16px 18px !important;
+  overflow-x: auto;
+  box-shadow: 0 4px 16px rgba(0,0,0,.18) !important;
+}
+.markdown-body pre code{ background: transparent !important; color: inherit !important; padding: 0 !important; }
+.markdown-body blockquote{
+  border-left: 4px solid #6c5ce7 !important;
+  background: rgba(108,92,231,.07) !important;
+  border-radius: 0 10px 10px 0 !important;
+  padding: 10px 16px !important;
+  color: #4a4f6a !important;
+  margin: 1em 0 !important;
+}
+html[data-color-mode='dark'] .markdown-body blockquote{
+  background: rgba(108,92,231,.12) !important;
+  color: #c6c9dd !important;
+}
+.markdown-body img{ max-width: 100% !important; border-radius: 12px !important; box-shadow: 0 4px 16px rgba(0,0,0,.12) !important; }
+.markdown-body table{ border-collapse: collapse !important; width: 100% !important; margin: 1em 0 !important; display: table !important; }
+.markdown-body th, .markdown-body td{ border: 1px solid rgba(108,92,231,.2) !important; padding: 8px 12px !important; }
+.markdown-body th{ background: rgba(108,92,231,.08) !important; font-weight: 600 !important; }
+.markdown-body hr{ border: none !important; height: 1px !important; background: linear-gradient(90deg, transparent, rgba(108,92,231,.4), transparent) !important; margin: 2em 0 !important; }
+.markdown-body ul, .markdown-body ol{ padding-left: 1.6em !important; }
+.markdown-body li{ margin: .35em 0 !important; }
+
+/* 12. 文章页标题 */
+h1.postTitle{
+  font-size: 34px !important;
+  font-weight: 800 !important;
+  background: linear-gradient(120deg, #3a2f8f, #6c5ce7);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+html[data-color-mode='dark'] h1.postTitle{
+  background: linear-gradient(120deg, #a29bfe, #d0caff);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
